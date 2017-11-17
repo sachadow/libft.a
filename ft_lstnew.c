@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sderet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 13:19:26 by sderet            #+#    #+#             */
-/*   Updated: 2017/11/17 14:21:29 by sderet           ###   ########.fr       */
+/*   Created: 2017/11/15 18:38:47 by sderet            #+#    #+#             */
+/*   Updated: 2017/11/17 14:00:44 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <string.h>
+#include <stdlib.h>
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	if (lst == 0)
-		return ;
-	f(lst);
-	while (lst->next != NULL)
+	t_list *list;
+
+	if (!(list = (t_list*)malloc(sizeof(t_list))))
+		return (NULL);
+	list->next = NULL;
+	if (content == 0)
 	{
-		lst = lst->next;
-		f(lst);
+		list->content_size = 0;
+		list->content = 0;
+		return (list);
 	}
+	if (!(list->content = ft_memalloc(content_size)))
+		return (NULL);
+	ft_memcpy(list->content, content, content_size);
+	list->content_size = content_size;
+	return (list);
 }

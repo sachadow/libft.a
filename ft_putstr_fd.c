@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sderet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 13:11:31 by sderet            #+#    #+#             */
-/*   Updated: 2017/11/17 13:51:37 by sderet           ###   ########.fr       */
+/*   Created: 2017/11/13 16:54:30 by sderet            #+#    #+#             */
+/*   Updated: 2017/11/14 15:02:22 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	new->next = *alst;
-	*alst = new;
+	int a;
+
+	a = 0;
+	if (s == 0)
+		return ;
+	while (s[a] != '\0')
+	{
+		ft_putchar_fd(s[a], fd);
+		a++;
+	}
 }
